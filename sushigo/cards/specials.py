@@ -22,5 +22,7 @@ class WasabiCard(SpecialCard):
     def get_value(self) -> int:
         return 0
 
-    def on_play(self, player):
-        player.wasabi_active = True
+    def on_play(self):
+        if not self.player:
+            raise ValueError("Wasabi must be played by a player.")
+        self.player.wasabi_active = True
