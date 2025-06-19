@@ -1,12 +1,22 @@
-from typing import Optional, List
-from sushigo.game import Game
-from sushigo.cards import Card
+'''
+Player class for the Sushi Go game.
+This class represents a player in the game, managing their hand of cards,
+played cards, and game state.
+'''
+
+from typing import List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from sushigo.cards.card import Card
+    from sushigo.game import Game
+
 
 class Player:
     '''
     Represents a player in the game.
     '''
-    def __init__(self, name: str, game: Game):
+
+    def __init__(self, name: str, game: 'Game'):
         self.name = name
         self.game = game
         self.hand: List[Card] = []
@@ -31,4 +41,3 @@ class Player:
             card.on_play(self)
         else:
             raise ValueError(f"{card.name} is not in {self.name}'s hand.")
-    

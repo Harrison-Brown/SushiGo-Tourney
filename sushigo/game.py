@@ -1,16 +1,26 @@
-from sushigo.player import Player
+'''
+Game class for SushiGo.
+This class represents the game board, managing players, rounds, and the winner.
+'''
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from sushigo.player import Player
+
 
 class Game:
     '''
     Represents the game board.
     '''
+
     def __init__(self):
         self.players = []
         self.rounds = 0
         self.current_round = 0
         self.winner = None
 
-    def add_player(self, player: Player):
+    def add_player(self, player: 'Player'):
         """
         Adds a player to the game.
         """
