@@ -1,12 +1,18 @@
-class Player():
+from typing import Optional, List
+from sushigo.game import Game
+from sushigo.cards import Card
+
+class Player:
     '''
     Represents a player in the game.
     '''
-    def __init__(self, name: str):
+    def __init__(self, name: str, game: Game):
         self.name = name
-        self.hand = []
-        self.played_cards = []
-        self.wasabi_active = False  # Track if Wasabi is active for this player
+        self.game = game
+        self.hand: List[Card] = []
+        self.played_cards: List[Card] = []
+        self.wasabi_active: bool = False  # Track if Wasabi is active for this player
+        self.maki_rolls: int = 0
 
     def add_card(self, card):
         """

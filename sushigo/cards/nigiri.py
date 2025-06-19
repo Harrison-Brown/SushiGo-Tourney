@@ -12,17 +12,20 @@ class NigiriCard(Card):
         super().__init__(self.name, self.color)
         self.value = self.base_value
     
-    def on_play(self, player: Player):
+    def on_play(self) -> None:
         """
         When a Nigiri card is played, it adds its value to the player's score.
         If Wasabi is active, it modifies the value of the Nigiri card.
         """
-        super().on_play(player)
-        if player.wasabi_active:
-            self.value = self.base_value * 3
-            player.wasabi_active = False
-        else:
-            self.value = self.base_value
+        if self.player is None:
+            raise ValueError("Player must be set before playing the card.")
+        if not hasattr(self.player, 'wasabi_active'):
+            super().on_play()
+            if self.player.wasabi_active:
+                self.value = self.base_value * 3
+                self.player.wasabi_active = False
+            else:
+                self.value = self.base_value
 
     def get_value(self) -> int:
         return self.value

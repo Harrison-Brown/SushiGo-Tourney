@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from sushigo.player import Player
+from typing import Optional
 
 class Card(ABC):
     """
@@ -7,9 +8,10 @@ class Card(ABC):
     """
 
     @abstractmethod
-    def __init__(self, name: str, color:str):
+    def __init__(self, name: str, color:str, player: Optional[Player] = None):
         self.name = name
         self.color = color
+        self.player = player
 
     @abstractmethod
     def get_value(self) -> int:
@@ -18,14 +20,14 @@ class Card(ABC):
         Will be based on board state
         """
         pass
-    
+
     @abstractmethod
-    def on_play(self, player: Player):
+    def on_play(self):
         """
         Called when the card is played.
         """
         pass
-
+    
     def __str__(self):
         return f"{self.name}({self.get_value()})"
     
