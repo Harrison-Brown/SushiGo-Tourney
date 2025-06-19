@@ -43,11 +43,14 @@ class MakiRollCard(Card):
 class MakiRoll1Card(MakiRollCard):
     rolls = 1
     name = 'Maki Roll 1'
+    default_count = 4
 
 class MakiRoll2Card(MakiRollCard):
     rolls = 2
     name = 'Maki Roll 2'
+    default_count = 4
 
 class MakiRoll3Card(MakiRollCard):
     rolls = 3
     name = 'Maki Roll 3'
+    default_count = 4

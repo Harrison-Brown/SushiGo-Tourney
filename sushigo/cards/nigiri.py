@@ -1,5 +1,4 @@
 from sushigo.cards import Card
-from sushigo.player import Player
 
 class NigiriCard(Card):
     """
@@ -33,11 +32,14 @@ class NigiriCard(Card):
 class EggNigiriCard(NigiriCard):
     base_value = 1
     name = 'Egg Nigiri'
+    default_count = 4
     
 class SalmonNigiriCard(NigiriCard):
     base_value = 2
     name = 'Salmon Nigiri'
+    default_count = 5
     
 class SquidNigiriCard(NigiriCard):
     base_value = 3
     name = 'Squid Nigiri'
+    default_count = 3

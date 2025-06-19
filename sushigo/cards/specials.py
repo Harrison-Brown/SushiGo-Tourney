@@ -7,6 +7,7 @@ class SpecialCard(Card):
 class WasabiCard(SpecialCard):
     name = 'Wasabi'
     color = 'yellow-orange'
+    default_count = 3
     def __init__(self):
         super().__init__(self.name, self.color)
     
