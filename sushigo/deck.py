@@ -5,6 +5,7 @@ import random
 if TYPE_CHECKING:
     from sushigo.cards.card import Card  # Avoid circular import issues
 
+
 class Deck(ABC):
     @abstractmethod
     def __init__(self, cards: List['Card']):
@@ -16,7 +17,6 @@ class Deck(ABC):
         """
         Shuffle the deck.
         """
-        
 
     @abstractmethod
     def draw(self) -> 'Card':

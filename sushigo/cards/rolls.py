@@ -5,6 +5,7 @@ if TYPE_CHECKING:
     from sushigo.player import Player  # Avoid circular import issues
     from sushigo.game import Game  # Avoid circular import issues
 
+
 class MakiRollCard(Card):
     """
     Represents a Maki Roll card.

@@ -5,14 +5,15 @@ if TYPE_CHECKING:
     from sushigo.player import Player  # Avoid circular import issues
     from sushigo.game import Game  # Avoid circular import issues
 
+
 class Appetizer(Card):
     """
     Base class for Appetizer cards in Sushi Go.
     Appetizers are worth 1 point each.
     """
+
     def __init__(self, name: str, color: str):
         super().__init__(name, color)
-        
 
 
 class TempuraCard(Appetizer):
