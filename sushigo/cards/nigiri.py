@@ -1,5 +1,9 @@
 from sushigo.cards.card import Card
+from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from sushigo.player import Player  # Avoid circular import issues
+    from sushigo.game import Game  # Avoid circular import issues
 
 class NigiriCard(Card):
     """
@@ -13,22 +17,22 @@ class NigiriCard(Card):
         super().__init__(self.name, self.color)
         self.value = self.base_value
 
-    def on_play(self) -> None:
+    def on_play(self, player: 'Player', game: 'Game') -> None:
         """
         When a Nigiri card is played, it adds its value to the player's score.
         If Wasabi is active, it modifies the value of the Nigiri card.
         """
-        if self.player is None:
+        if player is None:
             raise ValueError("Player must be set before playing the card.")
-        if not hasattr(self.player, 'wasabi_active'):
-            super().on_play()
-            if self.player.wasabi_active:
+        if not hasattr(player, 'wasabi_active'):
+            super().on_play(player, game)
+            if player.wasabi_active:
                 self.value = self.base_value * 3
-                self.player.wasabi_active = False
+                player.wasabi_active = False
             else:
                 self.value = self.base_value
 
-    def get_value(self) -> int:
+    def get_value(self, player: 'Player', game: 'Game') -> int:
         return self.value
 
 

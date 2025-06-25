@@ -4,6 +4,11 @@ This module defines special cards like Wasabi, which have unique effects when pl
 '''
 
 from sushigo.cards.card import Card
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from sushigo.player import Player  # Avoid circular import issues
+    from sushigo.game import Game  # Avoid circular import issues
 
 
 class SpecialCard(Card):
@@ -19,10 +24,13 @@ class WasabiCard(SpecialCard):
     def __init__(self):
         super().__init__(self.name, self.color)
 
-    def get_value(self) -> int:
+    def get_value(self, player: 'Player', game: 'Game') -> int:
         return 0
 
-    def on_play(self):
-        if not self.player:
+    def on_play(self, player: 'Player', game: 'Game') -> None:
+        """
+        When a Wasabi card is played, it activates the Wasabi effect for the player.
+        """
+        if not player:
             raise ValueError("Wasabi must be played by a player.")
-        self.player.wasabi_active = True
+        player.wasabi_active = True
