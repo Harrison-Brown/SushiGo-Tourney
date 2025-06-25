@@ -28,4 +28,18 @@ class Game:
         """
         return {player: player.get_score(self) for player in self.players}
 
-    # def deal_cards(self):
+    def deal_cards(self):
+        """
+        Deals cards to each player at the start of the game.
+        """
+        cards_per_player = 11 - len(self.players) // 2
+        for player in self.players:
+            player.hand = self.deck.draw_cards(cards_per_player)
+
+    def pass_cards(self):
+        """
+        Passes cards between players.
+        """
+        # for i in range(len(self.players)):
+        #     self.players[i].hand, self.players[i+1].hand = self.players[i-1].hand, self.players[i].hand 
+        pass
