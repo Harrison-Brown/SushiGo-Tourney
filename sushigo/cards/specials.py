@@ -34,3 +34,7 @@ class WasabiCard(SpecialCard):
         if not player:
             raise ValueError("Wasabi must be played by a player.")
         player.wasabi_active = True
+
+
+class TeaCard(SpecialCard):
+    pass

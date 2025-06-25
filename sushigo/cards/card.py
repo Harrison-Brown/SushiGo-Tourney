@@ -7,6 +7,8 @@ if TYPE_CHECKING:
 
 
 class Card(ABC):
+    default_count = 0
+
     @abstractmethod
     def __init__(
             self,
@@ -30,11 +32,8 @@ class Card(ABC):
         """
         pass
 
-    # def __str__(self):
-    #     try:
-    #         return f"{self.name}({self.get_value()})"
-    #     except ValueError:
-    #         return f"{self.name}(N/A)"
+    def __str__(self):
+        return self.__class__.__name__
 
-    # def __repr__(self):
-    #     return f"{self.__class__.__name__}({self.name}, {self.color})"
+    def __repr__(self):
+        return self.__class__.__name__

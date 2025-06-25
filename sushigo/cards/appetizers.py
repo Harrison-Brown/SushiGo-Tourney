@@ -58,3 +58,7 @@ class SashimiCard(Appetizer):
 
     def on_play(self, player: 'Player', game: 'Game'):
         pass
+
+
+class MisoSoupCard(Appetizer):
+    pass

@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from sushigo.player import Player
+    from sushigo.deck import Deck
 
 
 class Game:
@@ -14,18 +15,17 @@ class Game:
     Represents the game board.
     '''
 
-    def __init__(self):
-        self.players = []
-        self.rounds = 0
+    def __init__(self, players: list['Player'], deck: 'Deck'):
+        self.players = players
+        self.deck = deck
+        self.rounds = 3
         self.current_round = 0
         self.winner = None
 
-    def add_player(self, player: 'Player'):
+    def get_scores(self) -> dict['Player', int]:
         """
-        Adds a player to the game.
+        Returns a dictionary of player names and their scores.
         """
-        if player not in self.players:
-            self.players.append(player)
-            player.game = self
-        else:
-            raise ValueError(f"{player.name} is already in the game.")
+        return {player: player.get_score(self) for player in self.players}
+
+    # def deal_cards(self):

@@ -16,9 +16,8 @@ class Player:
     Represents a player in the game.
     '''
 
-    def __init__(self, name: str, game: 'Game'):
+    def __init__(self, name: str):
         self.name = name
-        self.game = game
         self.hand: List[Card] = []
         self.played_cards: List[Card] = []
         self.wasabi_active: bool = False  # Track if Wasabi is active for this player
@@ -41,3 +40,12 @@ class Player:
             card.on_play(self)
         else:
             raise ValueError(f"{card.name} is not in {self.name}'s hand.")
+
+    def get_score(self, game: 'Game') -> int:
+        """
+        Calculates the player's score based on played cards.
+        """
+        score = 0
+        for card in self.played_cards:
+            score += card.get_value(self, game)
+        return score
